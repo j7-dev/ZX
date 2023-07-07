@@ -1,4 +1,3 @@
-import { useEffect } from 'react'
 import { FaRobot } from 'react-icons/fa'
 
 const Loading = () => {

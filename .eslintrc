@@ -9,13 +9,10 @@
 	"root": true,
 	"parser": "@typescript-eslint/parser",
 	"plugins": [
-		"@typescript-eslint",
-		"prettier"
+		"@typescript-eslint"
 	],
 	"extends": [
 		"plugin:react/recommended",
-		"plugin:prettier/recommended",
-		"prettier",
 		"plugin:@typescript-eslint/recommended"
 	],
 	"overrides": [
@@ -41,14 +38,6 @@
 		"react/prop-types": "off",
 		"react/react-in-jsx-scope": "off",
 		"no-duplicate-imports": "error",
-		"prettier/prettier": [
-			"warn",
-			{
-				"singleQuote": true,
-				"semi": false,
-				"endOfLine": "auto"
-			}
-		],
 		"no-unused-vars": "off",
 		"@typescript-eslint/no-unused-vars": [
 			"error",

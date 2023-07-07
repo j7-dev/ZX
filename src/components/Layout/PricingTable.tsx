@@ -1,5 +1,4 @@
-import React from 'react'
-
+/* eslint-disable react/no-unknown-property */
 const PricingTable = () => {
     return (
         <section className="bg-white">

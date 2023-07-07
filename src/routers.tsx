@@ -17,6 +17,7 @@ export const router = createBrowserRouter([
             //     path: '/',
             //     element: <App />,
             // },
+
             {
                 path: '/generate',
                 element: <Generate />,

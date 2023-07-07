@@ -4,7 +4,6 @@ import Loading from '@/components/Dialog/Loading'
 import { useState, useRef } from 'react'
 import { nanoid } from 'nanoid'
 import { faker } from '@faker-js/faker'
-import { FaRobot } from 'react-icons/fa'
 
 const { TextArea } = Input
 

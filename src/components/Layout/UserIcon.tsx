@@ -1,4 +1,3 @@
-import React from 'react'
 import { Dropdown, MenuProps } from 'antd'
 import { LogoutOutlined, SettingOutlined } from '@ant-design/icons'
 import { Link } from 'react-router-dom'
