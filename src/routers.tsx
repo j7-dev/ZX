@@ -1,8 +1,9 @@
 import { createBrowserRouter } from 'react-router-dom'
-import App from './App.tsx'
-import Example from '@/pages/example/'
-import Login from '@/pages/login/'
+import Generate from '@/pages/Generate/'
+import Login from '@/pages/Login/'
 import Layout from '@/components/Layout/'
+import AccountSetting from '@/pages/AccountSetting/'
+
 export const router = createBrowserRouter([
     {
         path: '/login',
@@ -12,13 +13,17 @@ export const router = createBrowserRouter([
         path: '/',
         element: <Layout />,
         children: [
+            // {
+            //     path: '/',
+            //     element: <App />,
+            // },
             {
-                path: '/',
-                element: <App />,
+                path: '/generate',
+                element: <Generate />,
             },
             {
-                path: '/example',
-                element: <Example />,
+                path: '/account-setting',
+                element: <AccountSetting />,
             },
         ],
     },
