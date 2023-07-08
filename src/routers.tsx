@@ -13,10 +13,10 @@ export const router = createBrowserRouter([
         path: '/',
         element: <Layout />,
         children: [
-            // {
-            //     path: '/',
-            //     element: <App />,
-            // },
+            {
+                path: '/',
+                element: <Generate />,
+            },
 
             {
                 path: '/generate',

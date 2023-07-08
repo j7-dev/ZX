@@ -1,4 +1,4 @@
-import { Row, Col, Input, Button } from 'antd'
+import { Row, Col, Input, Button, Form } from 'antd'
 import Dialog, { TDialog } from '@/components/Dialog'
 import Loading from '@/components/Dialog/Loading'
 import { useState, useRef } from 'react'
@@ -8,8 +8,14 @@ import { faker } from '@faker-js/faker'
 const { TextArea } = Input
 
 const Generate = () => {
+    const [form] = Form.useForm()
+    const [validateStatus, setValidateStatus] = useState<
+        'success' | 'warning' | 'error' | 'validating' | undefined
+    >(undefined)
     const textAreaRef = useRef<any>(null)
     const [dialog, setDialog] = useState<TDialog[]>([])
+    const [isValid, setIsValid] = useState(false)
+
     const [isLoading, setIsLoading] = useState(false)
     const handleClick = () => {
         const text =
@@ -32,10 +38,61 @@ const Generate = () => {
             })
         }
     }
+
+    const handleValidate = () => {
+        setValidateStatus('validating')
+        setTimeout(() => {
+            form.validateFields(['fb'])
+                .then(() => {
+                    setValidateStatus('success')
+                    setIsValid(true)
+                })
+                .catch(() => {
+                    setValidateStatus('error')
+                    setIsValid(false)
+                })
+        }, 3500)
+    }
     return (
         <Row gutter={24} className=" pb-12">
             <Col span={24} xl={{ span: 12 }}>
                 <h2 className="text-gray-800">AI 生成內容</h2>
+                <p>請輸入連結的 Facebook 粉絲專頁 URL</p>
+                <Form
+                    layout="horizontal"
+                    form={form}
+                    validateTrigger={['onSubmit']}
+                >
+                    <div className="flex">
+                        <Form.Item
+                            name={['fb']}
+                            rules={[
+                                { required: true, message: '請輸入 URL' },
+                                { type: 'url', message: '請輸入合規的 URL' },
+                            ]}
+                            hasFeedback={validateStatus !== undefined}
+                            validateStatus={validateStatus}
+                            className="w-full mr-4"
+                        >
+                            <Input
+                                placeholder="請輸入 URL"
+                                disabled={
+                                    validateStatus === 'validating' ||
+                                    validateStatus === 'success'
+                                }
+                            />
+                        </Form.Item>
+                        <Form.Item>
+                            <Button
+                                type="primary"
+                                onClick={handleValidate}
+                                disabled={validateStatus === 'validating'}
+                            >
+                                連結
+                            </Button>
+                        </Form.Item>
+                    </div>
+                </Form>
                 <TextArea
                     ref={textAreaRef}
                     showCount
@@ -49,6 +106,7 @@ const Generate = () => {
                         type="primary"
                         onClick={handleClick}
                         loading={isLoading}
+                        disabled={!isValid}
                     >
                         生成
                     </Button>
